@@ -1,6 +1,38 @@
 # AlarmSaaS - Uptime Monitoring System
 
-Monitor your websites, get instant alerts when they go down. Simple, fast, reliable.
+Monitor your websites, get instant alerts when they go down.
+
+## 🚀 Deploy in 60 Seconds
+
+### Step 1: Backend (Railway - Free)
+
+1. Go to [railway.app](https://railway.app)
+2. Sign up with GitHub (free)
+3. Click **New Project** → **Deploy from GitHub repo**
+4. Select `SHAFAYAT222/alarm-saas`
+5. Set root directory: `backend`
+6. Add environment variable: `TELEGRAM_BOT_TOKEN` (optional)
+7. Click **Deploy**
+
+Your backend will be live at: `https://your-app.railway.app`
+
+### Step 2: Update Frontend API URL
+
+After backend deploys, update `API_URL` in:
+`frontend/app/page.tsx` → change to your Railway URL
+
+### Step 3: Push Changes
+
+```bash
+cd alarm-saas
+git add .
+git commit -m "Update API URL"
+git push origin main
+```
+
+GitHub Pages will auto-rebuild with your new API URL.
+
+---
 
 ## Features
 
@@ -11,63 +43,52 @@ Monitor your websites, get instant alerts when they go down. Simple, fast, relia
 - 🟢 Public status page
 - ⚡ 5-minute check interval
 
-## Quick Start
+---
 
-### 1. Deploy Backend (Railway/Render/Fly.io)
+## Telegram Alerts Setup
 
-```bash
-cd backend
-npm install
-npm run dev
-```
+1. Message [@BotFather](https://t.me/BotFather) on Telegram
+2. Send `/newbot` → follow prompts → get your **BOT TOKEN**
+3. Message your new bot, then message [@userinfobot](https://t.me/userinfobot)
+4. Get your **CHAT ID**
+5. Add monitors with your Chat ID
 
-**Environment Variables:**
-- `TELEGRAM_BOT_TOKEN` - Your Telegram bot token (optional)
-- `PORT` - Server port (default: 3001)
-
-### 2. Deploy Frontend
-
-The frontend auto-deploys to GitHub Pages on push to main.
-
-**Environment:**
-- Update `API_URL` in `frontend/app/page.tsx` to point to your backend
-
-### 3. Add Telegram Alerts
-
-1. Create a bot via @BotFather on Telegram
-2. Start a conversation with your bot
-3. Get your chat ID from @userinfobot
-4. Add monitors with your chat ID
+---
 
 ## API Endpoints
 
 ```
 GET  /api/monitors     - List all monitors
-POST /api/monitors     - Add a monitor
+POST /api/monitors     - Add a monitor {name, url, telegramChatId}
 DELETE /api/monitors/:id - Remove monitor
 POST /api/check        - Check all monitors
 POST /api/check/:id    - Check single monitor
 GET  /api/stats        - Get statistics
-GET  /api/incidents    - Get incident history
+GET  /api/incidents     - Get incident history
+GET  /api/health        - Health check
 ```
 
-## Architecture
+---
 
-- **Frontend:** Next.js (static export → GitHub Pages)
-- **Backend:** Express.js (any Node.js host)
-- **Database:** SQLite (built-in, no setup)
-- **Monitoring:** GitHub Actions cron (free) or external cron service
+## Alternative: Deploy Backend to Render
 
-## Deploy Options
+1. Go to [render.com](https://render.com)
+2. Sign up → Connect GitHub
+3. **New** → **Web Service**
+4. Select repo → Set root to `backend`
+5. Build command: `npm install`
+6. Start command: `npm start`
 
-| Service | Backend | Frontend |
-|---------|---------|----------|
-| Railway | ✅ | ❌ |
-| Render | ✅ | ❌ |
-| Fly.io | ✅ | ❌ |
-| GitHub Pages | ❌ | ✅ |
-| Vercel | ❌ | ✅ |
+---
 
-## License
+## All Your Deployments
 
-MIT
+| Project | Frontend | Backend |
+|---------|----------|---------|
+| [AlarmSaaS](https://shafayat222.github.io/alarm-saas/) | GitHub Pages | Railway/Render |
+| [Trading Portfolio](https://shafayat222.github.io/portfolio/) | GitHub Pages | - |
+| [AI SEO SaaS](https://shafayat222.github.io/ai-seo-saas/) | GitHub Pages | Railway/Render |
+
+---
+
+**Need help?** Just message me!
