@@ -1,0 +1,25 @@
+name: Monitor Uptime
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # Every 5 minutes
+  workflow_dispatch:
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check all monitors
+        run: |
+          # This workflow calls your API to check monitors
+          # Replace with your actual API URL
+          API_URL="${{ secrets.API_URL }}"
+          if [ -z "$API_URL" ]; then
+            echo "API_URL not configured, skipping..."
+            exit 0
+          fi
+          curl -s -X POST "$API_URL/api/check" || echo "API call failed"
+
+      - name: Report status
+        run: |
+          echo "Uptime check completed at $(date)"
